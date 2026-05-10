@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(py --version)",
+      "PowerShell(py -c \"import streamlit; print\\('streamlit:', streamlit.__version__\\)\" 2>&1)",
+      "PowerShell(py -c \"import pandas, numpy, plotly, sklearn; print\\('all deps ok'\\)\" 2>&1)",
+      "PowerShell(& \"E:\\\\python\\\\python.exe\" \"E:\\\\python\\\\get-pip.py\" 2>&1)",
+      "PowerShell(& \"E:\\\\python\\\\python.exe\" -m pip install streamlit pandas numpy plotly scikit-learn 2>&1)",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:8501\" -UseBasicParsing -TimeoutSec 5; Write-Host \"App RUNNING - $\\($r.StatusCode\\)\" } catch { Write-Host \"App DOWN - restarting...\"; Start-Process -FilePath \"E:\\\\python\\\\python.exe\" -ArgumentList \"-m streamlit run app.py --server.port 8501 --server.headless true\" -WorkingDirectory \"E:\\\\Career Help AI\\\\DS360\"; Start-Sleep 8; try { $r2 = Invoke-WebRequest -Uri \"http://localhost:8501\" -UseBasicParsing -TimeoutSec 5; Write-Host \"Restarted - $\\($r2.StatusCode\\)\" } catch { Write-Host \"Still down: $_\" } })"
+    ]
+  }
+}

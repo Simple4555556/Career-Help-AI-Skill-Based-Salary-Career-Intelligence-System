@@ -1,0 +1,10 @@
+{
+  "name": "career-help-ai-skill-based-salary-career-intelligence-system",
+  "version": "1.0.0",
+  "description": "Public",
+  "scripts": {
+    "dev": "cd \"Career Help AI/DS360\" && .\\run.bat"
+  },
+  "author": "",
+  "license": "ISC"
+}

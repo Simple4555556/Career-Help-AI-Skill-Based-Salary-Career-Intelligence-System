@@ -1,0 +1,26 @@
+job_id,job_title,company,company_type,location,experience_min,experience_max,avg_salary,skills,education
+1,Data Scientist,Google,Premium,Bangalore,3,6,25.0,"Python,Machine Learning,SQL,TensorFlow,Statistics",M.Tech
+2,Data Scientist,Amazon,Premium,Hyderabad,2,5,20.0,"Python,SQL,Machine Learning,Deep Learning",B.Tech
+3,Data Scientist,Microsoft,Premium,Bangalore,3,7,22.0,"Python,Machine Learning,Azure,SQL,Statistics",M.Tech
+4,Data Scientist,Flipkart,Premium,Bangalore,2,5,18.0,"Python,SQL,Machine Learning,Spark",B.Tech
+5,Data Analyst,TCS,Service,Delhi,0,2,7.0,"SQL,Excel,Power BI,Python",B.Tech
+6,Data Analyst,Infosys,Service,Pune,0,3,8.0,"SQL,Excel,Tableau,Python",B.Tech
+7,Data Analyst,Wipro,Service,Chennai,0,2,6.5,"SQL,Excel,Power BI",B.Tech
+8,ML Engineer,Swiggy,Startup,Bangalore,1,4,16.0,"Python,Machine Learning,TensorFlow,Docker",B.Tech
+9,ML Engineer,Zomato,Startup,Gurgaon,1,3,14.0,"Python,Machine Learning,NLP,SQL",B.Tech
+10,Data Scientist,Ola,Startup,Bangalore,2,5,17.0,"Python,Machine Learning,SQL,Spark",B.Tech
+11,Business Analyst,Accenture,Service,Mumbai,0,3,9.0,"SQL,Excel,Power BI,Tableau",B.Tech
+12,Data Scientist,PhonePe,Startup,Bangalore,2,4,19.0,"Python,Machine Learning,SQL,Statistics",M.Tech
+13,ML Engineer,CRED,Startup,Bangalore,1,3,15.0,"Python,Deep Learning,TensorFlow,NLP",B.Tech
+14,Data Analyst,HCL,Service,Noida,0,2,7.5,"SQL,Excel,Power BI",B.Tech
+15,Data Scientist,Paytm,Startup,Noida,2,5,16.5,"Python,Machine Learning,SQL,NLP",B.Tech
+16,Data Scientist,Uber,MNC,Hyderabad,3,6,23.0,"Python,Machine Learning,SQL,Spark,Statistics",M.Tech
+17,ML Engineer,Adobe,MNC,Noida,2,5,20.0,"Python,Deep Learning,TensorFlow,Computer Vision",M.Tech
+18,Data Analyst,Cognizant,Service,Chennai,0,3,8.5,"SQL,Excel,Tableau,Power BI",B.Tech
+19,Data Scientist,Razorpay,Startup,Bangalore,2,4,18.5,"Python,Machine Learning,SQL,Statistics",B.Tech
+20,ML Engineer,InMobi,Startup,Bangalore,1,3,16.0,"Python,Machine Learning,Deep Learning,NLP",B.Tech
+21,Data Scientist,SAP,MNC,Bangalore,3,6,21.0,"Python,Machine Learning,SQL,R,Statistics",M.Tech
+22,Data Analyst,IBM,MNC,Bangalore,1,3,11.0,"SQL,Python,Excel,Tableau,Power BI",B.Tech
+23,Data Scientist,Myntra,Startup,Bangalore,2,5,17.5,"Python,Machine Learning,SQL,Deep Learning",B.Tech
+24,ML Engineer,Meesho,Startup,Bangalore,1,3,14.5,"Python,Machine Learning,TensorFlow,SQL",B.Tech
+25,Data Analyst,Deloitte,Consulting,Mumbai,1,4,12.0,"SQL,Excel,Power BI,Tableau,Python",B.Tech
