@@ -177,7 +177,12 @@ def _load_uploaded(file_key="_file_upload"):
     f = st.session_state.get(file_key)
     if f is not None:
         try:
-            st.session_state.org_df = pd.read_csv(f)
+            temp_df = pd.read_csv(f)
+            required_cols = ["skills", "avg_salary", "experience_min", "experience_max"]
+            missing_cols = [col for col in required_cols if col not in temp_df.columns]
+            if missing_cols:
+                raise ValueError(f"CSV is missing required columns: {', '.join(missing_cols)}")
+            st.session_state.org_df = temp_df
             st.session_state.data_source = "uploaded"
             st.session_state.pop("_upload_error", None)
         except Exception as e:
@@ -199,11 +204,11 @@ def render_dataset_controls(key_suffix):
             unsafe_allow_html=True,
         )
     with ctrl2:
-        if st.button("📊 Load Sample Data", use_container_width=True, key=f"btn_sample_{key_suffix}"):
+        if st.button("📊 Load Sample Data", width="stretch", key=f"btn_sample_{key_suffix}"):
             _reset_data()
             st.rerun()
     with ctrl3:
-        if st.button("🔄 Reset / Clear", use_container_width=True, key=f"btn_reset_{key_suffix}"):
+        if st.button("🔄 Reset / Clear", width="stretch", key=f"btn_reset_{key_suffix}"):
             _reset_data()
             st.rerun()
 
@@ -274,7 +279,7 @@ with st.sidebar:
     )
 
     st.divider()
-    analyze = st.button("⚡ Run Analysis", use_container_width=True)
+    analyze = st.button("⚡ Run Analysis", width="stretch")
     st.divider()
     st.markdown("<span style='color:#94a3b8;font-size:11px'>📊 Data: 12,400+ job postings<br>🔄 Updated: May 2026</span>", unsafe_allow_html=True)
 
@@ -427,7 +432,7 @@ with tab1:
             margin=dict(l=10, r=10, t=10, b=60),
             height=320,
         )
-        st.plotly_chart(fig_gap, use_container_width=True)
+        st.plotly_chart(fig_gap, width="stretch")
 
     with col_gap2:
         missing = [g for g in skill_gaps if not g["you_have"] and g["priority"] in ("HIGH", "MEDIUM")]
@@ -451,7 +456,7 @@ with tab1:
                 height=320,
                 title=dict(text="Missing High-Demand Skills", font=dict(color="#e2e8f0", size=13)),
             )
-            st.plotly_chart(fig_miss, use_container_width=True)
+            st.plotly_chart(fig_miss, width="stretch")
         else:
             st.markdown("<div class='success-box' style='margin-top:80px;text-align:center'>🎉 <b>Excellent!</b><br>No critical skill gaps found!</div>", unsafe_allow_html=True)
 
@@ -479,7 +484,7 @@ with tab1:
             margin=dict(l=10, r=10, t=10, b=40),
             height=320,
         )
-        st.plotly_chart(fig_ss, use_container_width=True)
+        st.plotly_chart(fig_ss, width="stretch")
 
 
 # ╔══════════════════════════════════════════════════════════════╗
@@ -576,7 +581,7 @@ with tab2:
             font=dict(color="#94a3b8", size=11),
             margin=dict(l=10, r=10, t=20, b=10), height=340,
         )
-        st.plotly_chart(fig_pipe, use_container_width=True)
+        st.plotly_chart(fig_pipe, width="stretch")
 
         st.markdown("#### 📈 Applications Over Time")
         months = ["Jan", "Feb", "Mar", "Apr", "May"]
@@ -592,7 +597,7 @@ with tab2:
             showlegend=False,
             margin=dict(l=10, r=10, t=10, b=10), height=180,
         )
-        st.plotly_chart(fig_apps, use_container_width=True)
+        st.plotly_chart(fig_apps, width="stretch")
 
 
 # ╔══════════════════════════════════════════════════════════════╗
@@ -610,7 +615,7 @@ with tab3:
     prev_col, stat_col = st.columns([3, 1])
     with prev_col:
         st.markdown("#### 🔍 Dataset Preview")
-        st.dataframe(org_df, use_container_width=True, hide_index=True, height=230)
+        st.dataframe(org_df, width="stretch", hide_index=True, height=230)
     with stat_col:
         st.markdown("#### 📊 Quick Stats")
         st.metric("Total Records", len(org_df))
@@ -633,7 +638,7 @@ with tab3:
         data=_csv_data,
         file_name="ds360_export.csv",
         mime="text/csv",
-        use_container_width=True,
+        width="stretch",
         key="dl_csv",
     )
 
@@ -646,7 +651,7 @@ with tab3:
             data=_xls_buf.getvalue(),
             file_name="ds360_export.xlsx",
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            use_container_width=True,
+            width="stretch",
             key="dl_excel",
         )
     except Exception:
@@ -658,7 +663,7 @@ with tab3:
         data=_json_data,
         file_name="ds360_export.json",
         mime="application/json",
-        use_container_width=True,
+        width="stretch",
         key="dl_json",
     )
 
@@ -681,7 +686,7 @@ with tab3:
                 title_font=dict(color="#e2e8f0"), legend=dict(orientation="h", y=-0.2),
             )
             fig_ct2.update_traces(textinfo="percent+label")
-            st.plotly_chart(fig_ct2, use_container_width=True)
+            st.plotly_chart(fig_ct2, width="stretch")
 
     with oc2:
         if "avg_salary" in org_df.columns and "company_type" in org_df.columns:
@@ -701,7 +706,7 @@ with tab3:
                 margin=dict(l=10, r=10, t=40, b=10), height=280,
                 title_font=dict(color="#e2e8f0"),
             )
-            st.plotly_chart(fig_sal2, use_container_width=True)
+            st.plotly_chart(fig_sal2, width="stretch")
 
     if "skills" in org_df.columns:
         st.markdown("#### 🛠️ Skill Frequency in Dataset")
@@ -722,7 +727,7 @@ with tab3:
             margin=dict(l=10, r=10, t=40, b=10), height=340,
             title_font=dict(color="#e2e8f0"),
         )
-        st.plotly_chart(fig_sf, use_container_width=True)
+        st.plotly_chart(fig_sf, width="stretch")
 
     st.markdown("---")
     r1, r2 = st.columns(2)
@@ -757,7 +762,7 @@ with tab4:
             margin=dict(l=10, r=10, t=40, b=10), height=320,
             title_font=dict(color="#e2e8f0"),
         )
-        st.plotly_chart(fig_ct, use_container_width=True)
+        st.plotly_chart(fig_ct, width="stretch")
 
     with ma2:
         # Skills demand radar
@@ -779,7 +784,7 @@ with tab4:
             margin=dict(l=40, r=40, t=20, b=40), height=320,
             title=dict(text="Skills Demand Radar", font=dict(color="#e2e8f0")),
         )
-        st.plotly_chart(fig_radar, use_container_width=True)
+        st.plotly_chart(fig_radar, width="stretch")
 
     # Experience vs Salary trend
     exp_sal = pd.DataFrame({
@@ -799,7 +804,7 @@ with tab4:
         margin=dict(l=10, r=10, t=40, b=50), height=300,
         title_font=dict(color="#e2e8f0"),
     )
-    st.plotly_chart(fig_exp, use_container_width=True)
+    st.plotly_chart(fig_exp, width="stretch")
 
     # ML Feature Importance
     st.markdown("### 🤖 ML Model — Feature Importance")
@@ -819,7 +824,7 @@ with tab4:
         margin=dict(l=10, r=10, t=40, b=10), height=380,
         title_font=dict(color="#e2e8f0"),
     )
-    st.plotly_chart(fig_fi, use_container_width=True)
+    st.plotly_chart(fig_fi, width="stretch")
 
 
 # ─────────────────────────────────────────────────────────────────
